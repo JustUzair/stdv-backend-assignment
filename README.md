@@ -42,10 +42,13 @@ To install and run this this project
 ```bash
     git clone https://github.com/JustUzair/studiovity-backend-assignment.git
     cd studiovity-backend-assignment
-    npm install
-        OR
-    npm install --legacy-peer-deps           [USE IN CASE OF ANY ERRORS WHILE INSTALLATION OF DEPENDENCIES]
+    npm install          
     npm start
+```
+
+NOTE : If you encounter any issues while installing the dependencies try installing them using
+```bash
+    npm install --legacy-peer-deps 
 ```
 
 
