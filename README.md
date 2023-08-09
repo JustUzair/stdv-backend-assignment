@@ -58,7 +58,6 @@ The request method is the way we distinguish what kind of action our endpoint is
 | `GET`    | Used to retrieve a single item or a collection of items.                 |
 | `POST`   | Used when creating new items e.g. a new user, post, comment etc.         |
 | `PATCH`  | Used to update one or more fields on an item e.g. update e-mail of user. |
-| `PUT`    | Used to replace a whole item (all fields) with new data.                 |
 | `DELETE` | Used to delete an item.                                                  |
 
 ## HTTP Response Status Codes
@@ -95,7 +94,7 @@ To run this project, you will need to add the following environment variables to
 
 `PORT`=`3000`
 
-`JWT_SECRET`=`Uzair@8805Nmjkio@8805Iojknm@8805`
+`JWT_SECRET`=`YOUR_JWT_SECRET_SIGNATURE`
 
 `JWT_EXPIRES_IN`=`90d`
 
