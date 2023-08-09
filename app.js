@@ -72,7 +72,7 @@ const limiter = rateLimit({
   message: "Too many requests from this IP, please try again in an hour",
 });
 
-// app.use("/api", limiter); // all the routes that starts with  /api will have the rate limiting.
+app.use("/api", limiter); // all the routes that starts with  /api will have the rate limiting.
 
 /*|--------------------------------------------------------------------------------|
   |             Body Parser, reads data from body into req.body                    |
@@ -84,7 +84,7 @@ const limiter = rateLimit({
 */
 app.use(
   express.json({
-    limit: "10kb", //req.body can contain only
+    limit: "10kb", //req.body can contain only 10kb of data
   })
 );
 
