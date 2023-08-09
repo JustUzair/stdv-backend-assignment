@@ -15,6 +15,7 @@ const compression = require("compression");
 const userRouter = require("./routes/userRoutes");
 const relationRouter = require("./routes/relationRoutes");
 const characterRouter = require("./routes/characterRoutes");
+const viewRouter = require("./routes/viewRoutes")
 
 const globalErrorHandler = require("./controllers/errorController");
 const app = express();
@@ -135,6 +136,7 @@ app.use(hpp()); // Prevent parameter pollution
 app.use(compression());
 
 // ------------Multiple Routers with REST API implemented for each one-------------
+app.use("/characters", viewRouter); // API Route for Users
 app.use("/api/v1/users", userRouter); // API Route for Users
 app.use("/api/v1/relations", relationRouter); // API Route for Relations
 app.use("/api/v1/characters", characterRouter); // API Route for Characters

@@ -1,0 +1,46 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Document
+  style.
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    body{
+        font-family: 'Courier New', Courier, monospace;
+    }
+    .page-wrapper{
+        width:1000px;
+        /* height:100vh; */
+        margin: 0 auto;
+        background-color: #f1f1f1;
+        font-size: 12px;
+        padding:10px 30px;
+    }
+.page-wrapper
+  .character-card
+    each character in characters
+        span Name : #{character.name}
+        br
+        span Age : #{character.age}
+        br
+        span Gender : #{character.gender}
+        br
+        span Occupation : #{character.occupation}
+        br
+        span Relations :
+        br
+        each relation in character.relations
+            span &nbsp;&nbsp;&nbsp;&nbsp;Relation Name: #{relation.name}
+            span Relation Description: #{relation.description}
+            br
+        br
+        span(style='text-align: center;') Photos
+        br
+        .photo-wrapper
+        img(width='200' src='https://m.economictimes.com/thumb/msid-90152645,width-1200,height-900,resizemode-4,imgsize-72534/baahubali.jpg' alt='')
+        br
+        br
