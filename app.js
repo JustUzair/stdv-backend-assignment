@@ -15,7 +15,7 @@ const compression = require("compression");
 const userRouter = require("./routes/userRoutes");
 const relationRouter = require("./routes/relationRoutes");
 const characterRouter = require("./routes/characterRoutes");
-const viewRouter = require("./routes/viewRoutes")
+const viewRouter = require("./routes/viewRoutes");
 
 const globalErrorHandler = require("./controllers/errorController");
 const app = express();
@@ -73,7 +73,7 @@ const limiter = rateLimit({
   message: "Too many requests from this IP, please try again in an hour",
 });
 
-app.use("/api", limiter); // all the routes that starts with  /api will have the rate limiting.
+// app.use("/api", limiter); // all the routes that starts with  /api will have the rate limiting.
 
 /*|--------------------------------------------------------------------------------|
   |             Body Parser, reads data from body into req.body                    |

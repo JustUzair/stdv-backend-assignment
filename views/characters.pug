@@ -20,6 +20,13 @@ head
         font-size: 12px;
         padding:10px 30px;
     }
+    .photo-wrapper{
+        display:flex;
+        
+    }
+    .photo-wrapper img{
+        margin:0 10px;
+    }
 .page-wrapper
   .character-card
     each character in characters
@@ -35,12 +42,16 @@ head
         br
         each relation in character.relations
             span &nbsp;&nbsp;&nbsp;&nbsp;Relation Name: #{relation.name}
-            span Relation Description: #{relation.description}
+            br
+            span &nbsp;&nbsp;&nbsp;&nbsp;Relation Description: #{relation.description}
+            br
             br
         br
         span(style='text-align: center;') Photos
         br
         .photo-wrapper
-        img(width='200' src='https://m.economictimes.com/thumb/msid-90152645,width-1200,height-900,resizemode-4,imgsize-72534/baahubali.jpg' alt='')
+            each photo in character.photos
+                img(width='200' height='200' src=`/img/${photo}` alt='')
+
         br
         br

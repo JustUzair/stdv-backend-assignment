@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const authController = require("../controllers/authController");
 const characterController = require("../controllers/characterController");
+router.get("/pdf-view", characterController.getCharacterPDF);
 router.use(authController.protect, authController.restrictTo("admin"));
 router
   .get("/", characterController.getAllCharacters)
