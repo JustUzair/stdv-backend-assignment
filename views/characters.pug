@@ -2,7 +2,10 @@ doctype html
 head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  title Document
+  link(rel='preconnect', href='https://fonts.googleapis.com')
+  link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin='')
+  link(href='https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;600&display=swap', rel='stylesheet')
+  title Characters Info
   style.
     *{
         margin:0;
@@ -10,15 +13,19 @@ head
         box-sizing: border-box;
     }
     body{
-        font-family: 'Courier New', Courier, monospace;
+        font-family: 'Poppins',consolas,sans-serif;
     }
     .page-wrapper{
         width:1000px;
-        /* height:100vh; */
         margin: 0 auto;
-        background-color: #f1f1f1;
+        background-color: #f7e7e7;
         font-size: 12px;
-        padding:10px 30px;
+        padding:20px 30px;
+    }
+    .character-card{
+        padding:20px 30px;
+        border: 1px solid black;
+
     }
     .photo-wrapper{
         display:flex;
@@ -27,16 +34,19 @@ head
     .photo-wrapper img{
         margin:0 10px;
     }
+    hr{
+        border:0.7px solid #9f9999
+    }
 .page-wrapper
   .character-card
-    each character in characters
-        span Name : #{character.name}
+    each character,i in characters
+        span(style='text-transform:capitalize') Name : #{character.name} 
         br
-        span Age : #{character.age}
+        span(style='text-transform:capitalize') Age : #{character.age}
         br
-        span Gender : #{character.gender}
+        span(style='text-transform:capitalize') Gender : #{character.gender}
         br
-        span Occupation : #{character.occupation}
+        span(style='text-transform:capitalize') Occupation : #{character.occupation}
         br
         span Relations :
         br
@@ -46,12 +56,14 @@ head
             span &nbsp;&nbsp;&nbsp;&nbsp;Relation Description: #{relation.description}
             br
             br
-        br
-        span(style='text-align: center;') Photos
+        span(style='text-align: center;font-weight:600') Photos of 
+            span(style='text-decoration:underline') #{character.name}
         br
         .photo-wrapper
             each photo in character.photos
                 img(width='200' height='200' src=`/img/${photo}` alt='')
 
         br
-        br
+         
+        if i < characters.length - 1 
+            hr

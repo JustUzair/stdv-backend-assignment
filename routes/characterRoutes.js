@@ -1,15 +1,17 @@
 const router = require("express").Router();
 const authController = require("../controllers/authController");
 const characterController = require("../controllers/characterController");
-router.use(authController.protect, authController.restrictTo("admin"));
-router.get("/pdf-view", characterController.getCharacterPDF);
-router
-  .get("/", characterController.getAllCharacters)
-  .post("/", characterController.createCharacter);
+router.get("/get-pdf", characterController.getCharacterPDF);
+router.get("/get-xlsx", characterController.getXLSXData);
+router.get("/get-csv", characterController.getCSVData);
 
-router
-  .get("/:id", characterController.getCharacterById)
-  .patch("/:id", characterController.updateCharacter)
-  .delete("/:id", characterController.deleteCharacter);
+router.get("/", characterController.getAllCharacters);
+router.get("/:id", characterController.getCharacterById);
+
+router.use(authController.protect, authController.restrictTo("admin"));
+
+router.post("/", characterController.createCharacter);
+router.patch("/:id", characterController.updateCharacter);
+router.delete("/:id", characterController.deleteCharacter);
 
 module.exports = router;
