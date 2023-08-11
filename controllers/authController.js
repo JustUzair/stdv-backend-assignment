@@ -131,6 +131,7 @@ exports.logout = catchAsync(async (req, res, next) => {
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and check of it's there
   let token;
+  console.log(req.headers.authorization);
   if (
     req.headers.authorization && //Check if authorization header is set
     req.headers.authorization.startsWith("Bearer") //Check if a Bearer token is passed with authorization header
@@ -172,10 +173,11 @@ exports.protect = catchAsync(async (req, res, next) => {
   |---------------------------------------------------------------------------|
 */
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  // console.log(decoded);
+
 
   //3 Check if user still exists,
   const currentUser = await User.findById(decoded.id); // Check if the user isn't deleted and still exists in the system
+  // console.log(currentUser);
   if (!currentUser) {
     return next(
       new AppError("User belonging to this token does no longer exist!") //If user doesn't exist, generate an app-error and return
@@ -189,6 +191,7 @@ exports.protect = catchAsync(async (req, res, next) => {
       new AppError("User recently changed the password, please log in again")
     );
   // grant access to the protected route
+  // console.log(currentUser);
   req.user = currentUser; // Add currently logged in user to req object
   res.locals.user = currentUser; // Add currently logged in user locals object; values in this object will be available directly in the view (PUG template)
   next(); //go to next middleware in the chain
@@ -239,14 +242,18 @@ exports.isLoggedIn = async (req, res, next) => {
   |---------------------------------------------------------------------------|
 */
 exports.restrictTo = (...roles) => {
+  
   // roles ----> allowed user roles
   return (req, res, next) => {
+    // console.log("test",req.user);
+    const user = req.user
     // if currently logged in user's role is not in the allowed roles, reject access
     if (!roles.includes(req.user.role)) {
       return next(
         new AppError("You do not have permission to perform this action", 403)
       );
     }
+
     // if currently logged in user's role is in the allowed roles, grant access to next middleware in the chain
     next();
   };

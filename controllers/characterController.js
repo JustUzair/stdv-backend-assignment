@@ -20,7 +20,18 @@ exports.getAllCharacters = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.createCharacter = createOne(Character);
+exports.createCharacter =  catchAsync(async (req, res, next) => {
+  console.log(req.user);
+  //Create new document, from body passed in the req.body
+  const newDoc = await Character.create({...req.body,createdBy:req.user.id});
+  // Document created successfully, send acknowledgement and the new document
+  res.status(201).json({
+    status: "success",
+    data: {
+      data: newDoc,
+    },
+  });
+});
 exports.updateCharacter = updateOne(Character);
 exports.deleteCharacter = deleteOne(Character);
 exports.getCharacterById = getOne(Character, {
@@ -28,12 +39,13 @@ exports.getCharacterById = getOne(Character, {
   select: "-_id -__v",
 });
 
-async function printPDF() {
+async function printPDF(currentUserId,role) {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
-  await page.goto(`http://localhost:3000/characters/pdf-view`, {
+  await page.goto(`http://localhost:3000/characters/pdf-view/${currentUserId}&${role}`, {
     waitUntil: "networkidle0",
   });
+  console.log("here");
   const pdf = await page.pdf({ format: "A4" });
 
   await browser.close();
@@ -41,7 +53,9 @@ async function printPDF() {
 }
 
 exports.getCharacterPDF = catchAsync(async (req, res, next) => {
-  const pdf = await printPDF();
+
+  // console.log("getCharacterPDF",req.user.id);
+  const pdf = await printPDF(req.user.id,req.user.role);
   res.set({ "Content-Type": "application/pdf", "Content-Length": pdf.length });
   res.setHeader("Content-Disposition", "attachment; filename=characters.pdf");
   res.send(pdf);

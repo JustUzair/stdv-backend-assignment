@@ -22,7 +22,8 @@ head
         font-size: 12px;
         padding:20px 30px;
     }
-    .character-card{
+    .character-card--container
+    {
         padding:20px 30px;
         border: 1px solid black;
 
@@ -37,33 +38,40 @@ head
     hr{
         border:0.7px solid #9f9999
     }
-.page-wrapper
-  .character-card
-    each character,i in characters
-        span(style='text-transform:capitalize') Name : #{character.name} 
-        br
-        span(style='text-transform:capitalize') Age : #{character.age}
-        br
-        span(style='text-transform:capitalize') Gender : #{character.gender}
-        br
-        span(style='text-transform:capitalize') Occupation : #{character.occupation}
-        br
-        span Relations :
-        br
-        each relation in character.relations
-            span &nbsp;&nbsp;&nbsp;&nbsp;Relation Name: #{relation.name}
-            br
-            span &nbsp;&nbsp;&nbsp;&nbsp;Relation Description: #{relation.description}
-            br
-            br
-        span(style='text-align: center;font-weight:600') Photos of 
-            span(style='text-decoration:underline') #{character.name}
-        br
-        .photo-wrapper
-            each photo in character.photos
-                img(width='200' height='200' src=`/img/${photo}` alt='')
+body 
+    if characters.length > 0
+        .page-wrapper
+            .character-card--container
+                each character,i in characters
+                    span(style='text-transform:capitalize') Name : #{character.name} 
+                    br
+                    span(style='text-transform:capitalize') Age : #{character.age}
+                    br
+                    span(style='text-transform:capitalize') Gender : #{character.gender}
+                    br
+                    span(style='text-transform:capitalize') Occupation : #{character.occupation}
+                    br
+                    span Relations :
+                    br
+                    each relation in character.relations
+                        span &nbsp;&nbsp;&nbsp;&nbsp;Relation Name: #{relation.name}
+                        br
+                        span &nbsp;&nbsp;&nbsp;&nbsp;Relation Description: #{relation.description}
+                        br
+                        br
+                    span(style='text-align: center;font-weight:600') Photos of 
+                        span(style='text-decoration:underline') #{character.name}
+                    br
+                    .photo-wrapper
+                        each photo in character.photos
+                            img(width='200' height='200' src=`/img/${photo}` alt='')
 
-        br
-         
-        if i < characters.length - 1 
-            hr
+                    br
+                    
+                    if i < characters.length - 1 
+                        hr
+    else
+        .page-wrapper
+            .character-card
+                h1(style="text-align:center; font-size:100px") No Characters Found !!
+            

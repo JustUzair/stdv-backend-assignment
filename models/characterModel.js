@@ -28,6 +28,10 @@ const characterSchema = new mongoose.Schema({
       ref: "Relation",
     },
   ],
+  createdBy:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+  }
   //   properties: [
   //     {
   //       type: mongoose.Schema.Types.ObjectId,
