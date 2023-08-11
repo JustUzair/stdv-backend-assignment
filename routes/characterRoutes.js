@@ -2,6 +2,8 @@ const router = require("express").Router();
 const authController = require("../controllers/authController");
 const characterController = require("../controllers/characterController");
 
+
+
 router.use(authController.protect,authController.restrictTo("admin","creator"));
 router.get("/get-pdf", characterController.getCharacterPDF);
 router.get("/get-xlsx", characterController.getXLSXData);

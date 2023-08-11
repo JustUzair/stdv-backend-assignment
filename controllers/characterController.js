@@ -1,17 +1,24 @@
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("./../utils/appErrors");
 const Character = require("../models/characterModel");
-const { createOne, updateOne, deleteOne, getOne } = require("./handlerFactory");
+const { updateOne, deleteOne, getOne } = require("./handlerFactory");
 const fs = require("fs");
 
 const puppeteer = require("puppeteer");
 const XLSX = require("xlsx");
 
 exports.getAllCharacters = catchAsync(async (req, res, next) => {
-  const characters = await Character.find({}).populate({
-    path: "relations", // field in character Model object
-    select: "-_id -__v",
-  });
+  const characters = (
+    req.user.role === "admin"
+      ? await Character.find({}).populate({
+        path: "relations", // field in character Model object
+        select: "-_id -__v",
+      })
+      : await Character.find({ createdBy: req.user.id }).populate({
+        path: "relations", // field in character Model object
+        select: "-_id -__v",
+      })
+  );
   res.status(200).json({
     status: "success",
     data: {
@@ -19,6 +26,7 @@ exports.getAllCharacters = catchAsync(async (req, res, next) => {
     },
   });
 });
+
 
 exports.createCharacter =  catchAsync(async (req, res, next) => {
   console.log(req.user);
@@ -62,6 +70,7 @@ exports.getCharacterPDF = catchAsync(async (req, res, next) => {
 });
 
 async function populateXLSX(req) {
+  
   const characterBase = require("path").resolve(
     __dirname,
     "../docs/characters-base.xlsx"
@@ -79,7 +88,7 @@ async function populateXLSX(req) {
     );
   }
 
-  const charactersData = await Character.find({});
+  const charactersData = req.user.role === 'admin'  ? await Character.find({}) : await Character.find({createdBy:req.user.id});
 
   if (charactersData) {
     charactersData.map(character => {

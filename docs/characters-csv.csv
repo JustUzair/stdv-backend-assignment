@@ -1,4 +1,3 @@
 ﻿CharacterID,Name,Age,Gender,Occupation,Relations,Photos
-64d26c9307ffbcb398e2516c,Amrendra Bahubali,50,male,king,64d275472876b66b40a62e22 ; 64d275752876b66b40a62e28,http://localhost:3000/img/amrendra.jpg ; http://localhost:3000/img/amrendra-2.webp
-64d271f52928446e16714194,Mahendra Bahubali,22,male,prince,64d272c461e8fe1d4b469512 ; 64d2761c2876b66b40a62e37,http://localhost:3000/img/mahendra.jpg
-64d2750e2876b66b40a62e1a,Katappa,70,male,knight,64d275042876b66b40a62e17 ; 64d275ac2876b66b40a62e2e,http://localhost:3000/img/katappa.jpg
+64d679773b7e88caeebcc217,Amrendra Bahubali,50,male,king,64d275752876b66b40a62e28 ; 64d275472876b66b40a62e22,http://localhost:3000/img/amrendra-2.webp ; http://localhost:3000/img/amrendra.jpg
+64d67a92d56affd78effbea4,Katappa,75,male,knight,64d275752876b66b40a62e28 ; 64d275ac2876b66b40a62e2e,http://localhost:3000/img/katappa.jpg
