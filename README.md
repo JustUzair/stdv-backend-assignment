@@ -1,4 +1,4 @@
-# [Studiovity Backend Internship Assignment](https://studiovity.notion.site/Backend-Engineer-Assignment-52ce701ca7e240eb841e1f2a84abbf8d)
+# [stdv Backend Internship Assignment](https://stdv.notion.site/Backend-Engineer-Assignment-52ce701ca7e240eb841e1f2a84abbf8d)
 
 ## Authors
 
@@ -35,8 +35,8 @@ The API is developed using node version 20
 To install and run this this project
 
 ```bash
-    git clone https://github.com/JustUzair/studiovity-backend-assignment.git
-    cd studiovity-backend-assignment
+    git clone https://github.com/JustUzair/stdv-backend-assignment.git
+    cd stdv-backend-assignment
     npm install
     npm start
 ```
